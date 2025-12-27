@@ -1,0 +1,14 @@
+title: "seophohoho Tech Blog"
+email: seophohoho@gmail.com
+description: >-
+  백엔드 개발자의 기술 블로그입니다.
+  문제 해결 과정과 리팩토링 로그를 기록합니다.
+baseurl: ""
+url: "https://seophohoho.github.io"
+
+theme: minima
+plugins:
+  - jekyll-feed
+author:
+  name: "seophohoho"
+  github: "seophohoho"
