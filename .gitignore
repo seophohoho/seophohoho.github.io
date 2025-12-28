@@ -1,0 +1,16 @@
+# 1. Jekyll 빌드 결과물 (가장 중요!)
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# 2. Mac 시스템 파일 (맥북 사용자 필수)
+.DS_Store
+**/.DS_Store
+
+# 3. 에디터 설정 파일 (선택 사항)
+.vscode/
+.idea/
+
+# 4. Ruby 의존성 폴더 (혹시 로컬에 설치했다면)
+vendor/
