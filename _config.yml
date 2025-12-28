@@ -1,14 +1,17 @@
-title: "seophohoho Tech Blog"
+title: "seophohoho 기술 블로그"
 email: seophohoho@gmail.com
 description: >-
-  백엔드 개발자의 기술 블로그입니다.
-  문제 해결 과정과 리팩토링 로그를 기록합니다.
 baseurl: ""
 url: "https://seophohoho.github.io"
 
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-paginate
 author:
   name: "seophohoho"
   github: "seophohoho"
+
+# Pagination
+paginate: 10          # <-- 2. 여기서 숫자를 조절합니다. (예: 6개씩 보이기)
+paginate_path: "/page:num/"

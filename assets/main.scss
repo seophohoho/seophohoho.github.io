@@ -1,0 +1,425 @@
+---
+---
+
+/* --------------------------------------------------
+   1. Imports & Variables (설정)
+   -------------------------------------------------- */
+@import "minima";
+
+$sig-0: #009455;
+$sig-1: #005c35;
+$sig-2: #00796B;
+
+
+/* --------------------------------------------------
+   2. Global Styles (기본 스타일)
+   -------------------------------------------------- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", Roboto, "Noto Sans KR", sans-serif;
+  background-color: #fdfdfd;
+  color: #333;
+  padding-top: 80px;
+}
+
+/* 레이아웃 래퍼 */
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* --------------------------------------------------
+   3. Site Header (상단바 & 네비게이션)
+   -------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #ffffff; 
+  border-bottom: 1px solid #eaeaea;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.site-header .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 25px;
+  font-weight: 700;
+  color: #333 !important;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  margin-left: 50px;
+  
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.site-nav .page-link {
+  color: #666 !important;
+  font-size: 15px;
+  margin-left: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: $sig-0 !important;
+  }
+}
+
+
+/* --------------------------------------------------
+   4. Header Right Section (우측 메뉴 + 소셜 아이콘)
+   -------------------------------------------------- */
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  
+  margin-left: 120px;
+  padding-left: 25px;
+  border-left: 1px solid #eaeaea;
+  height: 24px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  color: #999 !important; 
+  
+  transition: all 0.2s ease;
+  line-height: 0;
+  
+  &:visited {
+    color: #999 !important;
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor; 
+  }
+
+  &:hover {
+    color: $sig-0 !important; 
+    transform: translateY(-2px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .social-links {
+    margin-left: 15px;
+    padding-left: 15px;
+    gap: 10px;
+  }
+}
+
+
+/* --------------------------------------------------
+   5. Hero Section (메인 배너)
+   -------------------------------------------------- */
+.home-desc-container {
+  background-color: $sig-0;
+  
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  
+  margin-top: -35px; 
+  border-radius: 0 0 0 0;
+  
+  padding-top: 120px;
+  padding-bottom: 120px;
+
+  text-align: center;
+  margin-bottom: 50px;
+  color: #fff;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.desc-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #fff;
+}
+
+.desc-subtitle {
+  font-size: 2rem;
+  font-weight: 330;
+  margin-top: 10px;
+  margin-bottom: 0;
+  opacity: 0.9;
+  font-family: "Pretendard", -apple-system, sans-serif;
+  color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .desc-title {
+    font-size: 2.2rem;
+  }
+  .desc-subtitle {
+    font-size: 1rem;
+  }
+  .home-desc-container {
+    padding: 40px 20px;
+  }
+}
+
+
+/* --------------------------------------------------
+   6. Tag List Component (태그 클라우드)
+   -------------------------------------------------- */
+.tag-list-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+  max-width: 900px;
+}
+
+.tag-pill {
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-size: 14px;
+  color: #555 !important;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  line-height: 1.2;
+
+  &:hover {
+    border-color: $sig-1;
+    color: black !important; 
+    background-color: #dcdcdc;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+}
+
+.tag-pill.active {
+  background-color: $sig-0 !important;
+  border-color: $sig-0 !important;
+  color: #fff !important;
+  font-weight: 300;
+  box-shadow: 0 4px 6px rgba(0, 148, 85, 0.3);
+  transform: translateY(-1px);
+}
+
+
+/* --------------------------------------------------
+   7. Post List Component (게시글 카드)
+   -------------------------------------------------- */
+.post-list {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.post-card-item {
+  width: 100%;
+}
+
+.post-card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+}
+
+.post-card {
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 30px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border-color: lightgray;
+  }
+}
+
+.post-meta {
+  font-size: 15px;
+  color: #999;
+  margin-bottom: 1px;
+  display: block;
+}
+
+.post-card-title {
+  font-size: 35px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 2px 0;
+  transition: color 0.2s ease;
+}
+
+.post-card:hover .post-card-title {
+  color: #333;
+}
+
+.post-card-excerpt {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+
+/* --------------------------------------------------
+   8. Pagination (페이지네이션)
+   -------------------------------------------------- */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  padding-bottom: 40px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-number {
+  font-size: 18px;
+  color: #999 !important;
+  text-decoration: none;
+  font-weight: 400;
+  min-width: 24px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $sig-0 !important;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  &.current {
+    font-weight: 800;
+    font-size: 20px;
+    color: $sig-0 !important;
+    cursor: default;
+    border-bottom: 2px solid $sig-0;
+  }
+}
+
+.pagination-next-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #f1f3f5;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  margin-left: 30px;
+
+  &:hover {
+    background-color: #e9ecef;
+  }
+
+  svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    
+    path {
+       stroke: #333;
+    }
+  }
+}
+
+.pagination-next-btn:hover svg path {
+  stroke: $sig-1;
+}
+
+
+/* --------------------------------------------------
+   9. Tag Filtering Logic (JS 필터링용 CSS)
+   -------------------------------------------------- */
+.filter-status {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #666;
+  display: none;
+}
+
+#filtered-post-list {
+  display: none;
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 900px; 
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------
+   10. Text Selection Style (드래그 시 색상)
+   -------------------------------------------------- */
+::selection {
+  background: $sig-0;
+  color: #fff;
+}
+
+::-moz-selection {
+  background: $sig-0;
+  color: #fff;
+}
