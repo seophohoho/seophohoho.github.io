@@ -2,424 +2,508 @@
 ---
 
 /* --------------------------------------------------
-   1. Imports & Variables (설정)
+   1. Darcula Official Palette Variables
    -------------------------------------------------- */
-@import "minima";
+:root {
+  // [Darcula Default] - 기본적으로 다크한 톤 유지
+  --bg-color: #242424; // IDE 메인 배경색
+  --header-bg: rgba(58, 58, 58, 0.8); // 상단바 (약간 밝은 회색)
+  --text-main: #a9b7c6; // 기본 텍스트 (연회색)
+  --text-muted: #808080; // 주석 및 부연 설명 (회색)
+  --border-color: #323232; // 구분선 및 테두리
 
-$sig-0: #009455;
-$sig-1: #005c35;
-$sig-2: #00796B;
+  // Darcula Point Colors
+  --primary: #cc7832; // 오렌지 (Keywords)
+  --accent: #ffc66d; // 골드 (Functions/Classes)
+  --link-color: #589df6; // 블루 (Links)
 
+  --tag-primary-bg: rgba(204, 120, 50, 0.15);
+  --tag-default-bg: #3d3f41;
+
+  // Code & Pre (고정)
+  --pre-bg: #2b2b2b;
+  --code-inline-bg: #3d3f41;
+  --code-inline-color: #6a8759; // 그린 (Strings)
+}
 
 /* --------------------------------------------------
-   2. Global Styles (기본 스타일)
+   2. Global Styles
    -------------------------------------------------- */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", Roboto, "Noto Sans KR", sans-serif;
-  background-color: #fdfdfd;
-  color: #333;
-  padding-top: 80px;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-/* 레이아웃 래퍼 */
 .wrapper {
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 0 30px;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 0 24px;
 }
-
 
 /* --------------------------------------------------
-   3. Site Header (상단바 & 네비게이션)
+   3. Header & Logo
    -------------------------------------------------- */
 .site-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
-  background-color: #ffffff; 
-  border-bottom: 1px solid #eaeaea;
-  z-index: 1000;
+  height: 72px;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 9999;
   display: flex;
   align-items: center;
 }
 
-.site-header .wrapper {
+.header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
-.site-title {
-  font-size: 25px;
-  font-weight: 700;
-  color: #333 !important;
+.site-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
   text-decoration: none;
-  letter-spacing: -0.5px;
-  margin-left: 50px;
-  
+  transition: color 0.2s;
+
+  .logo-dot {
+    color: var(--accent);
+  } // 도트를 골드색으로 포인트
   &:hover {
-    text-decoration: none;
+    color: var(--accent);
   }
 }
 
-.site-nav .page-link {
-  color: #666 !important;
-  font-size: 15px;
-  margin-left: 20px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  
-  &:hover {
-    color: $sig-0 !important;
-  }
-}
-
-
-/* --------------------------------------------------
-   4. Header Right Section (우측 메뉴 + 소셜 아이콘)
-   -------------------------------------------------- */
 .header-right {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
-.social-links {
+.github-link {
+  color: var(--text-muted);
   display: flex;
   align-items: center;
-  gap: 12px;
-  
-  margin-left: 120px;
-  padding-left: 25px;
-  border-left: 1px solid #eaeaea;
-  height: 24px;
-}
-
-.social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  color: #999 !important; 
-  
-  transition: all 0.2s ease;
-  line-height: 0;
-  
-  &:visited {
-    color: #999 !important;
-  }
-
-  svg {
-    width: 22px;
-    height: 22px;
-    fill: currentColor; 
-  }
-
-  &:hover {
-    color: $sig-0 !important; 
-    transform: translateY(-2px);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .social-links {
-    margin-left: 15px;
-    padding-left: 15px;
-    gap: 10px;
-  }
-}
-
-
-/* --------------------------------------------------
-   5. Hero Section (메인 배너)
-   -------------------------------------------------- */
-.home-desc-container {
-  background-color: $sig-0;
-  
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  
-  margin-top: -35px; 
-  border-radius: 0 0 0 0;
-  
-  padding-top: 120px;
-  padding-bottom: 120px;
-
-  text-align: center;
-  margin-bottom: 50px;
-  color: #fff;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.desc-title {
-  font-size: 4rem;
-  font-weight: 800;
-  margin: 0;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  color: #fff;
-}
-
-.desc-subtitle {
-  font-size: 2rem;
-  font-weight: 330;
-  margin-top: 10px;
-  margin-bottom: 0;
-  opacity: 0.9;
-  font-family: "Pretendard", -apple-system, sans-serif;
-  color: #fff;
-}
-
-@media screen and (max-width: 600px) {
-  .desc-title {
-    font-size: 2.2rem;
-  }
-  .desc-subtitle {
-    font-size: 1rem;
-  }
-  .home-desc-container {
-    padding: 40px 20px;
-  }
-}
-
-
-/* --------------------------------------------------
-   6. Tag List Component (태그 클라우드)
-   -------------------------------------------------- */
-.tag-list-container {
-  display: flex;
-  justify-content: center;
-  padding: 40px 0;
-  margin-bottom: 30px;
-  width: 100%;
-}
-
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  list-style: none !important;
-  margin: 0;
-  padding: 0;
-  max-width: 900px;
-}
-
-.tag-pill {
-  display: inline-block;
-  background-color: #fff;
-  border: 1px solid #dcdcdc;
-  border-radius: 50px;
-  padding: 8px 20px;
-  font-size: 14px;
-  color: #555 !important;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  line-height: 1.2;
-
-  &:hover {
-    border-color: $sig-1;
-    color: black !important; 
-    background-color: #dcdcdc;
-    text-decoration: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  }
-}
-
-.tag-pill.active {
-  background-color: $sig-0 !important;
-  border-color: $sig-0 !important;
-  color: #fff !important;
-  font-weight: 300;
-  box-shadow: 0 4px 6px rgba(0, 148, 85, 0.3);
-  transform: translateY(-1px);
-}
-
-
-/* --------------------------------------------------
-   7. Post List Component (게시글 카드)
-   -------------------------------------------------- */
-.post-list {
-  list-style: none !important;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.post-card-item {
-  width: 100%;
-}
-
-.post-card-link {
-  text-decoration: none !important;
-  color: inherit !important;
-  display: block;
-}
-
-.post-card {
-  background-color: #fff;
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  padding: 30px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    border-color: lightgray;
-  }
-}
-
-.post-meta {
-  font-size: 15px;
-  color: #999;
-  margin-bottom: 1px;
-  display: block;
-}
-
-.post-card-title {
-  font-size: 35px;
-  font-weight: 700;
-  color: #333;
-  margin: 0 0 2px 0;
   transition: color 0.2s ease;
+  &:hover {
+    color: var(--accent);
+  }
 }
 
-.post-card:hover .post-card-title {
-  color: #333;
+.theme-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  &:hover {
+    color: var(--accent);
+  }
 }
-
-.post-card-excerpt {
-  color: #666;
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 0;
-}
-
 
 /* --------------------------------------------------
-   8. Pagination (페이지네이션)
+   4. Index Page (Hero & Post List)
    -------------------------------------------------- */
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
-  padding-bottom: 40px;
-  max-width: 100%;
-  width: 100%;
+.page-content {
+  padding-top: 72px;
 }
 
-.pagination-numbers {
+.hero {
+  /* 핵심: 화면 전체 높이(100vh)에서 헤더 높이(72px)를 뺀 영역을 꽉 채움 */
+  min-height: calc(50vh - 100px);
   display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
+  flex-direction: column;
+  justify-content: center; // 세로 중앙 정렬
+  align-items: center; // 가로 중앙 정렬
+  text-align: center; // 텍스트 중앙 정렬
+  padding: 0; // 중앙 배치를 위해 기존 패딩 초기화
 
-.page-number {
-  font-size: 18px;
-  color: #999 !important;
-  text-decoration: none;
-  font-weight: 400;
-  min-width: 24px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  transition: all 0.2s ease;
-
-  &:hover {
-    color: $sig-0 !important;
-    text-decoration: none;
-    font-weight: 700;
+  .hero-content {
+    max-width: 700px; // 가독성을 위한 최대 너비 제한
+    padding: 0 24px;
+    /* 약간 위로 올리고 싶다면 transform 사용 (시각적 보정) */
+    transform: translateY(-20px);
   }
 
-  &.current {
+  h1 {
+    font-size: 2rem; // 중앙 배치 시에는 폰트를 조금 더 키워도 좋습니다
     font-weight: 800;
-    font-size: 20px;
-    color: $sig-0 !important;
-    cursor: default;
-    border-bottom: 2px solid $sig-0;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin: 0 auto;
+    max-width: 500px;
+    line-height: 1.6;
   }
 }
 
-.pagination-next-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: #f1f3f5;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
-  margin-left: 30px;
+/* 포스트 리스트와의 간격 조절 */
+// .post-list-section {
+//   padding-top: 40px;
+// }
 
-  &:hover {
-    background-color: #e9ecef;
+.post-item {
+  padding: 34px 0;
+  border-bottom: 1px solid var(--border-color);
+
+  .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 
-  svg {
-    display: block;
-    width: 18px;
-    height: 18px;
-    
-    path {
-       stroke: #333;
+  .dot {
+    width: 3px;
+    height: 3px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .title {
+    /* 1. title 하단 간격 조절 */
+    margin: 0 0 2px 0; // 기존 5px에서 2px로 줄임 (상 우 하 좌)
+    font-size: 1.7rem;
+
+    a {
+      color: var(--text-main);
+      text-decoration: none;
+      transition: color 0.2s;
+      &:hover {
+        color: var(--primary);
+      }
+    }
+  }
+
+  .sub-title {
+    color: var(--text-muted);
+    /* 2. sub-title 상단 간격 조절 (필요 시) */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4; // 줄 간격도 가독성에 영향을 줍니다
+  }
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 8px;
+  &.blue {
+    background: var(--tag-primary-bg);
+    color: var(--primary);
+    border: 1px solid rgba(204, 120, 50, 0.2);
+  }
+  &.gray {
+    background: var(--tag-default-bg);
+    color: var(--text-main);
+  }
+}
+
+/* --------------------------------------------------
+   5. Post Detail (Content & Darcula Code)
+   -------------------------------------------------- */
+.post-detail {
+  padding: 80px 0 100px;
+}
+
+.meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.post-header {
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 32px;
+  .dot {
+    width: 3px;
+    height: 3px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .post-title-main {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin: 0 0 18px;
+  }
+
+  .post-subtitle-main {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    line-height: 1;
+    margin: 0 0 30px;
+  }
+}
+
+.post-content {
+  color: var(--text-main);
+  font-size: 1.1rem;
+  line-height: 1.8;
+
+  h2,
+  h3 {
+    color: var(--accent);
+    margin: 2.5rem 0 1rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  /* Inline Code */
+  code {
+    background: var(--code-inline-bg);
+    color: var(--code-inline-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Darcula Code Block */
+  pre {
+    background: #323232 !important; // 배경보다 살짝 밝게 (전략 1 적용)
+    color: #a9b7c6 !important; // 기본 텍스트 색상
+    padding: 35px 20px 20px; // 상단 여백을 주어 버튼 공간 확보
+    border-radius: 12px;
+    overflow-x: auto;
+    border: 1px solid #3c3f41;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); // 확실한 입체감
+    margin: 2.5rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    position: relative;
+
+    // 맥 스타일 윈도우 버튼 (가짜 버튼)
+    &::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff5f56; // Red
+      box-shadow:
+        20px 0 0 #ffbd2e,
+        40px 0 0 #27c93f; // Yellow, Green
+      z-index: 10;
+    }
+
+    // 내부 code 태그: 하이라이팅 클래스를 위해 !important 남발 금지
+    code {
+      background: none !important;
+      color: inherit; // 부모인 pre의 색상을 따르되 클래스가 있으면 덮어씌움
+      padding: 0;
+      font-size: 0.9rem;
+      border-radius: 0;
+      display: block;
+    }
+
+    /* --------------------------------------------------
+       Jekyll Rouge Syntax Highlighting (Darcula Palette)
+       -------------------------------------------------- */
+    // 키워드 (if, else, for, return, function 등)
+    .k,
+    .kd,
+    .kn,
+    .kp,
+    .kr,
+    .kt {
+      color: #cc7832 !important;
+    }
+
+    // 함수명
+    .nf {
+      color: #ffc66d !important;
+    }
+
+    // 클래스명, 인터페이스
+    .nc,
+    .no,
+    .nn {
+      color: #ffc66d !important;
+    }
+
+    // 문자열 (Strings)
+    .s,
+    .s1,
+    .s2,
+    .sb,
+    .sc,
+    .sd,
+    .sh,
+    .si,
+    .sx {
+      color: #6a8759 !important;
+    }
+
+    // 숫자 (Numbers)
+    .m,
+    .mi,
+    .mf,
+    .mh,
+    .mo,
+    .il {
+      color: #6897bb !important;
+    }
+
+    // 변수명, 프로퍼티
+    .nv,
+    .vi,
+    .v,
+    .py {
+      color: #9876aa !important;
+    }
+
+    // 주석 (Comments)
+    .c,
+    .c1,
+    .cm {
+      color: #808080 !important;
+      font-style: italic !important;
+    }
+
+    // 연산자, 기호
+    .o,
+    .p {
+      color: #a9b7c6 !important;
+    }
+
+    // HTML 태그
+    .nt {
+      color: #e8bf6a !important;
+    }
+
+    // HTML 속성
+    .na {
+      color: #9876aa !important;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+}
+
+.post-footer {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color);
+  .back-link {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    &:hover {
+      opacity: 0.8;
     }
   }
 }
 
-.pagination-next-btn:hover svg path {
-  stroke: $sig-1;
-}
-
-
 /* --------------------------------------------------
-   9. Tag Filtering Logic (JS 필터링용 CSS)
+   6. Callout Styles (Kramdown & Blockquote)
    -------------------------------------------------- */
-.filter-status {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 16px;
-  color: #666;
-  display: none;
-}
+// 인용문(blockquote)이 .callout 클래스를 가질 때의 스타일
+blockquote.callout {
+  margin: 2rem 0;
+  padding: 16px 20px;
+  border-left: 4px solid;
+  border-radius: 8px;
+  background: rgba(128, 128, 128, 0.05); // 기본 배경
 
-#filtered-post-list {
-  display: none;
-  list-style: none !important;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  max-width: 900px; 
-  margin: 0 auto;
-}
+  // 기본 인용문 스타일 초기화 (테마에 따라 다를 수 있음)
+  font-style: normal;
+  color: var(--text-main);
 
-/* --------------------------------------------------
-   10. Text Selection Style (드래그 시 색상)
-   -------------------------------------------------- */
-::selection {
-  background: $sig-0;
-  color: #fff;
-}
+  p {
+    margin: 0; // 인용문 내부 p태그 여백 제거
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
 
-::-moz-selection {
-  background: $sig-0;
-  color: #fff;
+  strong {
+    display: inline-block;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  /* Info (Blue) */
+  &.info {
+    background: rgba(88, 157, 246, 0.1);
+    border-color: var(--link-color);
+    strong {
+      color: var(--link-color);
+    }
+  }
+
+  /* Warning (Orange) */
+  &.warning {
+    background: rgba(204, 120, 50, 0.1);
+    border-color: var(--primary);
+    strong {
+      color: var(--primary);
+    }
+  }
 }

@@ -1,17 +1,16 @@
-title: "seophohoho 기술 블로그"
-email: seophohoho@gmail.com
-description: >-
-baseurl: ""
+title: SEOPHOHOHO Tech
+description: Writing on software design, systems, and building products.
+baseurl: "" 
 url: "https://seophohoho.github.io"
 
-theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-author:
-  name: "seophohoho"
-  github: "seophohoho"
+# 테마 설정 제거 (theme: minima 줄을 삭제하거나 주석 처리하세요)
+# theme: minima 
 
-# Pagination
-paginate: 10          # <-- 2. 여기서 숫자를 조절합니다. (예: 6개씩 보이기)
+# 페이지네이션 설정
+paginate: 10
 paginate_path: "/page:num/"
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-seo-tag
