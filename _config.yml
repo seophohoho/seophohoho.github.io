@@ -1,14 +1,15 @@
 title: SEOPHOHOHO Tech
 description: Writing on software design, systems, and building products.
-baseurl: "" 
-url: "https://seophohoho.github.io"
+baseurl: ''
+url: 'https://seophohoho.github.io'
+img_path: '/assets/images'
 
 # 테마 설정 제거 (theme: minima 줄을 삭제하거나 주석 처리하세요)
-# theme: minima 
+# theme: minima
 
 # 페이지네이션 설정
 paginate: 10
-paginate_path: "/page:num/"
+paginate_path: '/page:num/'
 
 plugins:
   - jekyll-paginate
