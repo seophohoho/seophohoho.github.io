@@ -2,508 +2,723 @@
 ---
 
 /* --------------------------------------------------
-   1. Darcula Official Palette Variables
+   1. Design Tokens
    -------------------------------------------------- */
 :root {
-  // [Darcula Default] - 기본적으로 다크한 톤 유지
-  --bg-color: #242424; // IDE 메인 배경색
-  --header-bg: rgba(58, 58, 58, 0.8); // 상단바 (약간 밝은 회색)
-  --text-main: #a9b7c6; // 기본 텍스트 (연회색)
-  --text-muted: #808080; // 주석 및 부연 설명 (회색)
-  --border-color: #323232; // 구분선 및 테두리
+  --bg: #ffffff;
+  --bg-subtle: #fbfbfb;
+  --border: #e8e8e8;
 
-  // Darcula Point Colors
-  --primary: #cc7832; // 오렌지 (Keywords)
-  --accent: #ffc66d; // 골드 (Functions/Classes)
-  --link-color: #589df6; // 블루 (Links)
+  --text: rgba(0, 0, 0, 0.84);
+  --text-muted: rgba(0, 0, 0, 0.54);
+  --text-light: rgba(0, 0, 0, 0.38);
 
-  --tag-primary-bg: rgba(204, 120, 50, 0.15);
-  --tag-default-bg: #3d3f41;
+  --green: #408a71;
+  --green-light: #5aab8e;
+  --green-soft: rgba(64, 138, 113, 0.08);
+  --green-tag-bg: rgba(64, 138, 113, 0.1);
 
-  // Code & Pre (고정)
-  --pre-bg: #2b2b2b;
-  --code-inline-bg: #3d3f41;
-  --code-inline-color: #6a8759; // 그린 (Strings)
+  --link: #408a71;
+
+  --pre-bg: #1e1e2e;
+  --code-bg: #eef5f2;
+  --code-color: #408a71;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+  --radius: 8px;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --bg-subtle: #242424;
+  --border: #2e2e2e;
+  --text: rgba(255, 255, 255, 0.87);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-light: rgba(255, 255, 255, 0.35);
+  --code-bg: #1e2e28;
+  --pre-bg: #111;
 }
 
 /* --------------------------------------------------
-   2. Global Styles
+   2. Reset & Base
    -------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 18px;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-/* --------------------------------------------------
-   3. Header & Logo
-   -------------------------------------------------- */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 72px;
-  background-color: var(--header-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
-  z-index: 9999;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.header-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.site-logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-main);
+a {
+  color: var(--green);
   text-decoration: none;
-  transition: color 0.2s;
 
-  .logo-dot {
-    color: var(--accent);
-  } // 도트를 골드색으로 포인트
   &:hover {
-    color: var(--accent);
+    color: var(--text);
+    text-decoration: underline;
   }
 }
 
-.header-right {
+/* --------------------------------------------------
+   3. Layout
+   -------------------------------------------------- */
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 30px;
+  box-sizing: border-box;
+
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+}
+
+/* --------------------------------------------------
+   5. Page Content
+   -------------------------------------------------- */
+.page-content {
+  flex: 1;
+}
+
+/* --------------------------------------------------
+   6. Hero Section
+   -------------------------------------------------- */
+.hero {
+  padding: 64px 0 48px;
+  text-align: center;
+}
+
+.hero-inner {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-.github-link {
-  color: var(--text-muted);
+.hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* Hero icon bar */
+.hero-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.hero-icon-btn {
   display: flex;
   align-items: center;
-  transition: color 0.2s ease;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+
+  svg { width: 20px; height: 20px; }
+
   &:hover {
-    color: var(--accent);
+    background: var(--green-soft);
+    color: var(--green);
+    text-decoration: none;
   }
 }
 
-.theme-btn {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
+/* Dark mode icon bar */
+[data-theme="dark"] .hero-icons {
+  background: rgba(30, 30, 30, 0.85);
+  border-color: #3a3a3a;
+}
+
+/* Sun/moon icon visibility */
+.theme-toggle {
+  .icon-moon { display: none; }
+  .icon-sun  { display: block; }
+}
+
+[data-theme="dark"] .theme-toggle {
+  .icon-sun  { display: none; }
+  .icon-moon { display: block; }
+}
+
+/* Recruit button (Kurly-style pill) */
+.recruit-button {
+  display: inline-block;
+  padding: 0 36px;
+  height: 56px;
+  line-height: 56px;
+  border: 2px solid var(--green);
+  border-radius: 28px;
+  background: var(--green);
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+
   &:hover {
-    color: var(--accent);
+    background: #fff;
+    color: var(--green);
+    text-decoration: none;
   }
+}
+
+/* Glow animation */
+.button-glow {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -20%;
+    top: -10%;
+    width: 0;
+    height: 100%;
+    transform: rotate(15deg) scale(1, 2);
+    box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.7);
+    animation: button-glow 3000ms ease-in-out infinite;
+  }
+
+  &:hover {
+    box-shadow: 0 0 30px 15px rgba(64, 138, 113, 0.4);
+  }
+}
+
+@keyframes button-glow {
+  0%   { left: -20%; }
+  50%  { left: 120%; }
+  100% { left: 120%; }
 }
 
 /* --------------------------------------------------
-   4. Index Page (Hero & Post List)
+   7. Post List (Kurly-style)
    -------------------------------------------------- */
-.page-content {
-  padding-top: 72px;
+.post-list {
+  margin: 0;
+  padding: 60px 0;
+  list-style: none;
 }
 
-.hero {
-  /* 핵심: 화면 전체 높이(100vh)에서 헤더 높이(72px)를 뺀 영역을 꽉 채움 */
-  min-height: calc(50vh - 100px);
+.post-card {
+  margin-top: 68px;
+
+  &:first-child { margin-top: 0; }
+}
+
+.post-card__meta {
   display: flex;
-  flex-direction: column;
-  justify-content: center; // 세로 중앙 정렬
-  align-items: center; // 가로 중앙 정렬
-  text-align: center; // 텍스트 중앙 정렬
-  padding: 0; // 중앙 배치를 위해 기존 패딩 초기화
-
-  .hero-content {
-    max-width: 700px; // 가독성을 위한 최대 너비 제한
-    padding: 0 24px;
-    /* 약간 위로 올리고 싶다면 transform 사용 (시각적 보정) */
-    transform: translateY(-20px);
-  }
-
-  h1 {
-    font-size: 2rem; // 중앙 배치 시에는 폰트를 조금 더 키워도 좋습니다
-    font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 1.5rem;
-    letter-spacing: -1.5px;
-    line-height: 1.2;
-  }
-
-  p {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    margin: 0 auto;
-    max-width: 500px;
-    line-height: 1.6;
-  }
-}
-
-/* 포스트 리스트와의 간격 조절 */
-// .post-list-section {
-//   padding-top: 40px;
-// }
-
-.post-item {
-  padding: 34px 0;
-  border-bottom: 1px solid var(--border-color);
-
-  .meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-bottom: 10px;
 
   .dot {
     width: 3px;
     height: 3px;
-    background: var(--text-muted);
+    background: var(--text-light);
     border-radius: 50%;
-    opacity: 0.5;
-  }
-
-  .title {
-    /* 1. title 하단 간격 조절 */
-    margin: 0 0 2px 0; // 기존 5px에서 2px로 줄임 (상 우 하 좌)
-    font-size: 1.7rem;
-
-    a {
-      color: var(--text-main);
-      text-decoration: none;
-      transition: color 0.2s;
-      &:hover {
-        color: var(--primary);
-      }
-    }
-  }
-
-  .sub-title {
-    color: var(--text-muted);
-    /* 2. sub-title 상단 간격 조절 (필요 시) */
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.4; // 줄 간격도 가독성에 영향을 줍니다
   }
 }
 
+.post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.post-link {
+  display: block;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+
+    .post-title { color: var(--green); }
+  }
+}
+
+.post-title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+.title-summary {
+  margin: 8px 0 0;
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--green);
+}
+
+.image-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.post-autor {
+  font-size: 15px;
+  color: var(--green);
+}
+
+.post-date {
+  font-size: 13px;
+  color: var(--green);
+}
+
+/* Tag (used in post detail) */
 .tag {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 100px;
   font-size: 0.75rem;
   font-weight: 600;
-  margin-right: 8px;
-  &.blue {
-    background: var(--tag-primary-bg);
-    color: var(--primary);
-    border: 1px solid rgba(204, 120, 50, 0.2);
+  background: var(--green-tag-bg);
+  color: var(--green);
+}
+
+/* --------------------------------------------------
+   8. Pagination
+   -------------------------------------------------- */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px 0 80px;
+
+  a, span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    text-decoration: none;
   }
-  &.gray {
-    background: var(--tag-default-bg);
-    color: var(--text-main);
+
+  a:hover {
+    border-color: var(--green);
+    color: var(--green);
+    background: var(--green-soft);
+  }
+
+  .current {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
   }
 }
 
 /* --------------------------------------------------
-   5. Post Detail (Content & Darcula Code)
+   9. Post Nav Header
    -------------------------------------------------- */
-.post-detail {
-  padding: 80px 0 100px;
+.post-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 12px 0;
+  background: var(--bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.meta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1rem;
-  color: var(--text-muted);
-  margin-bottom: 4px;
+.post-nav__inner {
   display: flex;
   align-items: center;
-  gap: 5px;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.post-nav__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+
+  svg { width: 18px; height: 18px; }
+
+  &:hover { color: var(--green); text-decoration: none; }
+}
+
+.post-nav__icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post-nav__icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+
+  svg { width: 20px; height: 20px; }
+
+  &:hover { background: var(--green-soft); color: var(--green); text-decoration: none; }
+}
+
+
+/* --------------------------------------------------
+   9. Post Detail
+   -------------------------------------------------- */
+.post-detail {
+  padding: 56px 0 100px;
 }
 
 .post-header {
-  margin-bottom: 48px;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 32px;
+  margin-bottom: 30px;
+}
+
+.post-header__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-bottom: 16px;
+
   .dot {
     width: 3px;
     height: 3px;
-    background: var(--text-muted);
+    background: var(--text-light);
     border-radius: 50%;
-    opacity: 0.5;
-  }
-
-  .post-title-main {
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: var(--text-main);
-    line-height: 1.2;
-    margin: 0 0 18px;
-  }
-
-  .post-subtitle-main {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    line-height: 1;
-    margin: 0 0 30px;
   }
 }
 
+.post-title-main {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin: 0 0 12px;
+}
+
+.post-subtitle-main {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.post-header__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* --------------------------------------------------
+   10. Post Content
+   -------------------------------------------------- */
 .post-content {
-  color: var(--text-main);
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--text);
 
-  h2,
-  h3 {
-    color: var(--accent);
-    margin: 2.5rem 0 1rem;
-  }
-  h2 {
-    font-size: 1.75rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.5rem;
-  }
+  h1 { font-size: 2em; font-weight: bold; margin-top: 2em; }
+  h2 { font-size: 1.5em; font-weight: bold; margin-top: 2em; margin-bottom: 15px; }
+  h3 { font-size: 1.25em; font-weight: bold; margin-top: 2em; margin-bottom: 15px; }
+  h4, h5, h6 { font-size: 1em; font-weight: bold; margin-top: 2em; margin-bottom: 15px; }
 
-  p {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-  }
+  p { line-height: 1.75; margin-bottom: 15px; }
+
   a {
-    color: var(--link-color);
+    color: var(--green);
     text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
+    &:hover { text-decoration: underline; color: var(--text); }
   }
 
-  /* Inline Code */
+  strong { font-weight: 700; }
+
+  ul, ol { padding-left: 1.5rem; margin-bottom: 15px; }
+  li { margin-bottom: 6px; }
+
+  blockquote {
+    color: var(--text-muted);
+    border-left: 4px solid var(--green);
+    padding-left: 15px;
+    font-size: 18px;
+    margin: 1.5rem 0;
+    font-style: normal;
+  }
+
+  /* Inline code */
   code {
-    background: var(--code-inline-bg);
-    color: var(--code-inline-color);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'JetBrains Mono', monospace;
+    color: var(--code-color);
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: Consolas, 'Courier New', Courier;
+    font-size: 0.97em;
   }
 
-  /* Darcula Code Block */
+  /* Code block */
   pre {
-    background: #323232 !important; // 배경보다 살짝 밝게 (전략 1 적용)
-    color: #a9b7c6 !important; // 기본 텍스트 색상
-    padding: 35px 20px 20px; // 상단 여백을 주어 버튼 공간 확보
-    border-radius: 12px;
+    background: #223;
+    color: #fafafa;
+    padding: 10px;
+    border-radius: 4px;
     overflow-x: auto;
-    border: 1px solid #3c3f41;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); // 확실한 입체감
-    margin: 2.5rem 0;
-    font-family: 'JetBrains Mono', monospace;
-    position: relative;
+    margin: 1.5rem 0;
+    font-family: Consolas, 'Courier New', Courier;
+    font-size: 0.8em;
+    line-height: 1.3;
 
-    // 맥 스타일 윈도우 버튼 (가짜 버튼)
-    &::before {
-      content: '';
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #ff5f56; // Red
-      box-shadow:
-        20px 0 0 #ffbd2e,
-        40px 0 0 #27c93f; // Yellow, Green
-      z-index: 10;
-    }
-
-    // 내부 code 태그: 하이라이팅 클래스를 위해 !important 남발 금지
     code {
-      background: none !important;
-      color: inherit; // 부모인 pre의 색상을 따르되 클래스가 있으면 덮어씌움
+      background: none;
+      color: #fafafa;
       padding: 0;
-      font-size: 0.9rem;
-      border-radius: 0;
-      display: block;
+      font-size: inherit;
     }
 
-    /* --------------------------------------------------
-       Jekyll Rouge Syntax Highlighting (Darcula Palette)
-       -------------------------------------------------- */
-    // 키워드 (if, else, for, return, function 등)
-    .k,
-    .kd,
-    .kn,
-    .kp,
-    .kr,
-    .kt {
-      color: #cc7832 !important;
-    }
-
-    // 함수명
-    .nf {
-      color: #ffc66d !important;
-    }
-
-    // 클래스명, 인터페이스
-    .nc,
-    .no,
-    .nn {
-      color: #ffc66d !important;
-    }
-
-    // 문자열 (Strings)
-    .s,
-    .s1,
-    .s2,
-    .sb,
-    .sc,
-    .sd,
-    .sh,
-    .si,
-    .sx {
-      color: #6a8759 !important;
-    }
-
-    // 숫자 (Numbers)
-    .m,
-    .mi,
-    .mf,
-    .mh,
-    .mo,
-    .il {
-      color: #6897bb !important;
-    }
-
-    // 변수명, 프로퍼티
-    .nv,
-    .vi,
-    .v,
-    .py {
-      color: #9876aa !important;
-    }
-
-    // 주석 (Comments)
-    .c,
-    .c1,
-    .cm {
-      color: #808080 !important;
-      font-style: italic !important;
-    }
-
-    // 연산자, 기호
-    .o,
-    .p {
-      color: #a9b7c6 !important;
-    }
-
-    // HTML 태그
-    .nt {
-      color: #e8bf6a !important;
-    }
-
-    // HTML 속성
-    .na {
-      color: #9876aa !important;
-    }
+    /* Syntax highlighting */
+    .hll { background-color: #49483e; }
+    .c   { color: #75715e; }
+    .k   { color: #66d9ef; }
+    .kd  { color: #00d0a5; }
+    .kn  { color: #f92672; }
+    .kp, .kr, .kt { color: #66d9ef; }
+    .nf  { color: #bed6ff; }
+    .nc  { color: #ff8080; }
+    .s, .s1, .s2, .sb, .sc, .sd, .sh, .si, .sx, .sr, .ss { color: #e6db74; }
+    .m, .mf, .mh, .mi, .mo, .il { color: #ae81ff; }
+    .mi  { color: #f8ff30; }
+    .na  { color: #a6e22e; }
+    .no  { color: #66d9ef; }
+    .nx  { color: #a6e22e; }
+    .nb, .ni, .nl, .nn, .p { color: #f8f8f2; }
+    .nv, .vc, .vg, .vi { color: #f8f8f2; }
+    .o   { color: #cc7832; }
+    .ow  { color: #f92672; }
+    .c1  { color: #acca8b; }
+    .cm, .cs { color: #75715e; }
+    .cp  { color: #75715e; }
+    .ge  { font-style: italic; }
+    .gs  { font-weight: bold; }
+    .gu  { color: #75715e; }
+    .gd  { color: #f92672; }
+    .gi  { color: #a6e22e; }
+    .lineno { color: #ffe5a0; }
   }
 
   img {
     max-width: 100%;
-    border-radius: 12px;
-    margin: 2rem 0;
+    border-radius: var(--radius);
+    margin: 1.5rem 0;
   }
-}
 
-.post-footer {
-  margin-top: 80px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border-color);
-  .back-link {
-    color: var(--link-color);
-    text-decoration: none;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    &:hover {
-      opacity: 0.8;
+  table {
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: left;
+    color: var(--text);
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    font-size: 0.9em;
+
+    tr:nth-child(even) { background: var(--bg-subtle); }
+
+    th {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-bottom-color: var(--border);
+      padding: 10px 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    td {
+      border: 1px solid var(--border);
+      padding: 10px 15px;
     }
   }
 }
 
 /* --------------------------------------------------
-   6. Callout Styles (Kramdown & Blockquote)
+   11. Post Footer
    -------------------------------------------------- */
-// 인용문(blockquote)이 .callout 클래스를 가질 때의 스타일
+.post-footer {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green);
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    &:hover { text-decoration: none; opacity: 0.8; }
+  }
+}
+
+/* --------------------------------------------------
+   12. Callouts
+   -------------------------------------------------- */
 blockquote.callout {
   margin: 2rem 0;
-  padding: 16px 20px;
+  padding: 14px 18px;
   border-left: 4px solid;
-  border-radius: 8px;
-  background: rgba(128, 128, 128, 0.05); // 기본 배경
-
-  // 기본 인용문 스타일 초기화 (테마에 따라 다를 수 있음)
+  border-radius: 0 6px 6px 0;
   font-style: normal;
-  color: var(--text-main);
+  color: var(--text);
 
-  p {
-    margin: 0; // 인용문 내부 p태그 여백 제거
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
+  p { margin: 0; font-size: 0.95rem; line-height: 1.6; }
+  strong { display: block; margin-bottom: 4px; font-weight: 700; }
 
-  strong {
+  &.info    { background: rgba(59,130,246,0.06); border-color: #3b82f6; strong { color: #3b82f6; } }
+  &.warning { background: rgba(245,158,11,0.06); border-color: #f59e0b; strong { color: #f59e0b; } }
+  &.tip     { background: rgba(64,138,113,0.06); border-color: var(--green); strong { color: var(--green); } }
+}
+
+/* --------------------------------------------------
+   13. Site Footer
+   -------------------------------------------------- */
+.site-footer {
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  text-align: center;
+}
+
+.site-footer .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-heading {
+  font-size: 20px;
+  font-weight: bold;
+  color: #999;
+  margin: 0;
+}
+
+.footer-desc {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.info-policy {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  list-style: none;
+
+  li { color: var(--green); }
+
+  li:first-child::before { display: none; }
+
+  li::before {
     display: inline-block;
-    margin-bottom: 4px;
-    font-weight: 700;
+    margin: 0 8px;
+    color: var(--text-muted);
+    opacity: 0.15;
+    content: '/';
+  }
+}
+
+/* --------------------------------------------------
+   14. Responsive
+   -------------------------------------------------- */
+@media (max-width: 800px) {
+  .wrapper { padding: 0 15px; }
+
+  .site-footer .wrapper {
+    flex-direction: column;
+    align-items: baseline;
   }
 
-  /* Info (Blue) */
-  &.info {
-    background: rgba(88, 157, 246, 0.1);
-    border-color: var(--link-color);
-    strong {
-      color: var(--link-color);
-    }
+  .info-policy {
+    flex-direction: column;
+    align-items: baseline;
+    li::before { display: none; }
   }
 
-  /* Warning (Orange) */
-  &.warning {
-    background: rgba(204, 120, 50, 0.1);
-    border-color: var(--primary);
-    strong {
-      color: var(--primary);
-    }
+  .footer-desc { margin-bottom: 15px; }
+
+  .hero-cta { bottom: 12px; }
+
+  .recruit-button {
+    font-size: 14px;
+    height: 46px;
+    line-height: 46px;
+    padding: 0 24px;
   }
+
+  .post-title { font-size: 18px; }
+  .title-summary { font-size: 16px; }
 }
